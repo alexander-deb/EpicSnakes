@@ -1,8 +1,20 @@
-#include "FruitBuilder.hpp"
+#include "Product.hpp"
+#include "Snake.hpp"
+#include<string>
+class Apple : public Fruit {
+public:
+    Apple() {
+        _bonus = '0';
+        _color = '0';
+        _coordinates = { 0,0 };
+    }
+    ~Apple() {
 
-class Apple: public FruitBuilder{
-    public:
-    Apple();
-    ~Apple();
-    void give(){};
-}
+    }
+    std::string Operation() const override {
+        return "Created a Apple!\n";
+    }
+    void give(Snake snake) {
+        return;
+    }
+};

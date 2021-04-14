@@ -1,4 +1,3 @@
-#include "Point.hpp"
 #include"Product.hpp"
 class Fruit : public Product {
 protected:
@@ -30,5 +29,5 @@ public:
 	virtual Point get_coordinates() {
 		return _coordinates;
 	}
-	virtual void give() = 0;
+	virtual void give(Snake snake) = 0;
 };

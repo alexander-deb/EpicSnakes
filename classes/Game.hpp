@@ -1,4 +1,3 @@
-#include <string>
 #include "Point.hpp"
 #include "SnakeBuilder.hpp"
 #include "Apple.hpp"
@@ -26,10 +25,14 @@ class Game{
         _name = "Bob";
         _score = 0;
         _weapon = 0;
+        _snakes = new Snake();
+        _apples = new Apple();
+        _pineapples = new PineApple();
         _snakebuilder = SnakeBuilder();
-        _field = new Point();
+        _applebuilder = AppleBuilder();
+        _pineapplebuilder = PineAppleBuilder();
+        _field = { 0 };
     }
-    ~Game(){}
     void shoot() {};
     void pause() {};
     void run() {
@@ -37,8 +40,8 @@ class Game{
         director.set_builder(&_snakebuilder);
         _snakes = director.getSnake();
         director.set_builder(&_applebuilder);
-        _apples = director.getSnake();
+        _apples = director.getApple();
         director.set_builder(&_pineapplebuilder);
-        _pineapplebuilder = director.getSnake();
+        _pineapples = director.getPineApple();
     }
 };

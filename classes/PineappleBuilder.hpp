@@ -1,5 +1,3 @@
-#include "InterfaceBuilder.hpp"
-#include "Pineapple.hpp"
 class PineAppleBuilder :public Builder {
 private:
 	PineApple _pineapple;
@@ -9,13 +7,14 @@ public:
 		_pineapple = PineApple();
 	}
 	void set_bonus(char bonus) {
-		_pineapple.set_bouns(bonus);
+		_pineapple.set_bonus(bonus);
 	}
 	void set_velocity(char velocity) {
 		return;
 	}
 	void set_coordinates(Point* coordinates) {
-		_pineapple.set_coordinates(coordinates);
+		Point coord = { coordinates[0] };
+		_pineapple.set_coordinates({coord.x, coord.y});
 	}
 	void set_color(char color) {
 		_pineapple.set_color(color);
@@ -23,10 +22,11 @@ public:
 	void set_directory(char directory) {
 		return;
 	}
-	char get_velocity() { return; }
 	char get_color() { return _pineapple.get_color(); }
-	char get_directory() { return; }
-	Point* get_coordinates() { return _pineapple.get_coordinates(); }
+	Point* get_coordinates() {
+		Point coord[2] = { {_pineapple.get_coordinates().x, _pineapple.get_coordinates().y}, 0 };
+		return coord;
+	}
 	char get_bonus() { return _pineapple.get_bonus(); }
 	PineApple get_result() {
 		return _pineapple;

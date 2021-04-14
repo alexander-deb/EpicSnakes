@@ -1,5 +1,3 @@
-#include"InterfaceBuilder.hpp"
-#include "Snake.hpp"
 class Director {
 private:
 	Builder* _builder;
@@ -30,8 +28,8 @@ public:
 
 		snake->set_color(_builder->get_color());
 		snake->set_coordinates(_builder->get_coordinates());
-		snake->set_velocity(_builder->get_velocity());
-		snake->set_directory(_builder->get_directory());
+		//snake->set_velocity(_builder->get_velocity());
+		//snake->set_directory(_builder->get_directory());
 
 		return snake;
 	}

@@ -1,5 +1,3 @@
-#include "Point.hpp"
-
 class Snake{
     private:
     char _velocity;
@@ -10,7 +8,7 @@ class Snake{
     public:
     Snake(){
         _velocity = 0;
-        _coordinates = NULL;
+        _coordinates = { 0 };
         _direction = '0';
         _color = '0';
     }

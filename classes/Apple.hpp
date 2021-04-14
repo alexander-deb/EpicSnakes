@@ -1,12 +1,11 @@
-#include "Product.hpp"
-#include "Snake.hpp"
+#include "Fruit.hpp"
 #include<string>
 class Apple : public Fruit {
 public:
     Apple() {
         _bonus = '0';
         _color = '0';
-        _coordinates = { 0,0 };
+        _coordinates = { 0 };
     }
     ~Apple() {
 

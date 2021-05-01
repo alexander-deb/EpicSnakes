@@ -1,5 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from Point import Point
+from random import randint
+from Globals import Globals
 
 
 class FruitCreator(ABC):
@@ -43,10 +46,9 @@ class Pineapple():
     def __str__(self):
         return "Pineapple"
 
-def generate_fruit(fruit, coordinates):
+def generate_fruit(fruit):
+    coordinates = Point(randint(0, Globals.field_size-1), randint(0, Globals.field_size-1))
     if fruit == "Apple":
-        print("Created Apple")
         return AppleCreator().create(coordinates)
     elif fruit == "Pineapple":
-        print("Created Pinepple")
         return PineappleCreator().create(coordinates)

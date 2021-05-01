@@ -4,6 +4,9 @@ from Globals import Globals
 from Point import Point
 from random import randint, choice
 from collections import deque
+from abc import ABC, abstractmethod
+from Strategy import DirectStrategy, RandomStrategy
+
 
 class SelfReferencingEntity:
     def __init__(self):
@@ -19,27 +22,17 @@ class Snake:
         self.direction = None
         self.color = color
         self.tail = False
+        self.strategy = RandomStrategy()
+        self.goal = None
 
     def next_position(self):
-        directions = []
-        for direct in Globals.directions:
-            if direct + self.coordinates[0]:
-                directions.append(direct)
-        directions.remove(self.coordinates[1] - self.coordinates[0])
-
-        self.direction = choice(directions)
-
-        self.coordinates.appendleft(self.coordinates[0] + self.direction)
-        if not self.tail:
-            del self.coordinates[-1]
-        else:
-            self.tail = False
+        self.strategy.next_position(self)
     
-    def take_bonus(self, fruit):
-        if str(fruit) == "Apple":
-            return copy.deepcopy(self)
-        elif str(fruit) == "Pineapple":
-            self.tail = True
+    def take_bonus(self):
+        self.tail = True
+
+    def change_goal(self):
+        self.goal = Point(randint(0, Globals.field_size-1), randint(0, Globals.field_size-1))
 
 
     def __copy__(self):
@@ -62,6 +55,9 @@ class Snake:
 
 if __name__ == "__main__":
     snake = Snake([Point(1, 1), Point(1,2), Point(2,2)], "red")
-    snake.next_position()
-    print(snake.coordinates)
-    
+    snake.change_goal()
+    print(snake.goal)
+    for i in range(10):
+        snake.next_position()
+        print(snake.coordinates)
+        

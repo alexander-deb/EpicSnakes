@@ -18,7 +18,7 @@ class Snake:
         self.coordinates = deque(coordinates)
         self.direction = None
         self.color = color
-        print("Created Snake")
+        self.tail = False
 
     def next_position(self):
         directions = []
@@ -30,23 +30,31 @@ class Snake:
         self.direction = choice(directions)
 
         self.coordinates.appendleft(self.coordinates[0] + self.direction)
-        del self.coordinates[-1] 
+        if not self.tail:
+            del self.coordinates[-1]
+        else:
+            self.tail = False
+    
+    def take_bonus(self, fruit):
+        if str(fruit) == "Apple":
+            return copy.deepcopy(self)
+        elif str(fruit) == "Pineapple":
+            self.tail = True
 
 
     def __copy__(self):
         coordinates = copy.copy(self.coordinates)
         new = self.__class__(
-            coordinates, self.direction, self.color
+            coordinates, self.color
         )
         new.__dict__.update(self.__dict__)
         return new
 
     def __deepcopy__(self, memo={}):
         # First, let's create copies of the nested objects.
-        some_list_of_objects = copy.deepcopy(self.some_list_of_objects, memo)
         coordinates = copy.deepcopy(self.coordinates, memo)
         new = self.__class__(
-            coordinates, self.direction, self.color
+            coordinates, self.color
         )
         new.__dict__ = copy.deepcopy(self.__dict__, memo)
         return new

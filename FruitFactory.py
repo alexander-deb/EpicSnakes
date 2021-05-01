@@ -24,26 +24,24 @@ class PineappleCreator(FruitCreator):
 
 class Fruit(ABC):
     @abstractmethod
-    def give_bonus(self):
+    def __str__(self):
         pass
 
-class Apple(Fruit):
+class Apple():
     def __init__(self, coordinates):
         self.color = "red"
         self.coordinates = coordinates
-        self.bonus = 2
 
-    def give_bonus(self):
-        return self.bonus
+    def __str__(self):
+        return "Apple"
 
-class Pineapple(Fruit):
+class Pineapple():
     def __init__(self, coordinates):
-        self.color = "red"
+        self.color = "yellow"
         self.coordinates = coordinates
-        self.bonus = -2
 
-    def give_bonus(self):
-        return self.bonus
+    def __str__(self):
+        return "Pineapple"
 
 def generate_fruit(fruit, coordinates):
     if fruit == "Apple":

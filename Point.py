@@ -24,3 +24,6 @@ class Point:
         first =  False if self.x < 0 or self.y < 0 else True
         second = False if self.x >= 20 or self.y >= 20 else True
         return first and second
+    
+    def __hash__(self):
+        return hash((self.x, self.y))

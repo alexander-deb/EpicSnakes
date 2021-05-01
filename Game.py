@@ -18,7 +18,7 @@ class Game:
     def display_objects(self):
         field = [[0]*Globals.field_size for i in range(Globals.field_size)]
         for fruit in self.fruits:
-            field[fruit.coordinates[0]][fruit.coordinates[1]] = "F"
+            field[fruit.coordinates.x][fruit.coordinates.y] = "F"
         for snake in self.snakes:
             for coordinate in snake.coordinates:
                 field[coordinate.x][coordinate.y] = "S"
@@ -27,7 +27,7 @@ class Game:
             print(*field[i])
 
     def run(self):
-        fruit = generate_fruit("Apple", (1,5))
+        fruit = generate_fruit("Pineapple", Point(2,1))
         self.fruits.append(fruit)
         snake = Snake([Point(1, 1), Point(1,2), Point(2,2)], "red")
         self.snakes.append(snake)
@@ -35,7 +35,15 @@ class Game:
             self.display_objects()
             for snake in self.snakes:
                 snake.next_position()
-            sleep(0.1)
+                i = 0
+                while i < len(self.fruits):
+                    if snake.coordinates[0] == self.fruits[i].coordinates:
+                        snake.take_bonus(self.fruits[i])
+                        self.fruits.pop(i)
+                    else:
+                        i += 1
+
+            sleep(0.2)
             os.system("clear")
             
 

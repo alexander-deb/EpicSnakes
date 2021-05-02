@@ -53,7 +53,7 @@ class Game:
         for i in range(Globals.fruits_quantity):
             self.fruits.append(generate_fruit(choice(Globals.fruits)))
         snake = Snake([Point(start_point, start_point), Point(start_point, start_point+1), Point(start_point+1, start_point+1)], "blue")
-        for i in range(Globals.fruits_quantity):
+        for i in range(Globals.snakes_quantity):
             self.snakes.append(copy.deepcopy(snake))
 
 

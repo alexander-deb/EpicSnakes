@@ -12,21 +12,24 @@ class Drawer():
         self.game = Game()
         self.canvas = tk.Canvas()
         self.menu()
+        self.label = tk.Label(text=f"Score: {self.game.score}")
+        self.label.pack()
         self.root.bind('<Button-1>', self.kill_snake)
         self.root.mainloop()
 
     def menu(self):
+        self.root.geometry("100x100+500+200")
         def but(x):
             self.game.choose_difficulty(x)
             if Field.field_size == 10:
                 self.square_width = 40
-                self.root.geometry("440x440")
+                self.root.geometry(f"{self.square_width*10+2*self.square_width}x{self.square_width*10+2*self.square_width}+200+200")
             elif Field.field_size == 20:
                 self.square_width = 20
-                self.root.geometry("440x440")
+                self.root.geometry(f"{self.square_width*20+2*self.square_width}x{self.square_width*20+2*self.square_width}+200+200")
             elif Field.field_size == 30:
                 self.square_width = 20
-                self.root.geometry("660x660")
+                self.root.geometry(f"{self.square_width*30+2*self.square_width}x{self.square_width*30+2*self.square_width}+300+1")
             b1.destroy()
             b2.destroy()
             b3.destroy()
@@ -44,13 +47,14 @@ class Drawer():
         
 
     def kill_snake(self, event):
+        
         x = event.x // self.square_width - 1
         y = event.y // self.square_width - 1
         i = 0
         while i < len(self.game.snakes):
             if self.game.snakes[i].coordinates[0] == Point(x, y):
                 del self.game.snakes[i]
-                self.game.score += 100
+                self.game.score += self.game.difficulty*100
                 if len(self.game.snakes) == 0:
                     print(f"YOU WON! YOUR SCORE: {self.game.score}")
                     exit()
@@ -61,6 +65,7 @@ class Drawer():
     def draw(self):
         self.game.run()
         self.canvas.delete("all")
+        self.label.config(text=f"Score: {self.game.score}")
         for i in range(1, Field.field_size+1):
             for j in range(1, Field.field_size+1):
                 self.canvas.create_rectangle(i*self.square_width, 

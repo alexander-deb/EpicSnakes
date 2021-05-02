@@ -1,5 +1,6 @@
 import tkinter as tk
 from Globals import Globals
+from Field import Field
 from Game import Game
 from Point import Point
 
@@ -7,19 +8,44 @@ from Point import Point
 class Drawer():
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry("440x440")
+        self.square_width = 1
         self.game = Game()
         self.canvas = tk.Canvas()
-        self.draw()
-        
+        self.menu()
         self.root.bind('<Button-1>', self.kill_snake)
-        
         self.root.mainloop()
 
+    def menu(self):
+        def but(x):
+            self.game.choose_difficulty(x)
+            if Field.field_size == 10:
+                self.square_width = 40
+                self.root.geometry("440x440")
+            elif Field.field_size == 20:
+                self.square_width = 20
+                self.root.geometry("440x440")
+            elif Field.field_size == 30:
+                self.square_width = 20
+                self.root.geometry("660x660")
+            b1.destroy()
+            b2.destroy()
+            b3.destroy()
+            self.draw()
+                
+        b1 = tk.Button(text="Low",
+                    command=lambda : but(1))
+        b2 = tk.Button(text="Medium",
+                    command=lambda : but(2))
+        b3 = tk.Button(text="Insane",
+                    command=lambda : but(3))
+        b1.pack()
+        b2.pack()
+        b3.pack()
+        
 
     def kill_snake(self, event):
-        x = event.x // Globals.field_size - 1
-        y = event.y // Globals.field_size - 1
+        x = event.x // self.square_width - 1
+        y = event.y // self.square_width - 1
         i = 0
         while i < len(self.game.snakes):
             if self.game.snakes[i].coordinates[0] == Point(x, y):
@@ -35,36 +61,36 @@ class Drawer():
     def draw(self):
         self.game.run()
         self.canvas.delete("all")
-        for i in range(1, 21):
-            for j in range(1, 21):
-                self.canvas.create_rectangle(i*Globals.field_size, 
-                                        j*Globals.field_size, 
-                                        i*Globals.field_size+20, 
-                                        j*Globals.field_size+20, 
+        for i in range(1, Field.field_size+1):
+            for j in range(1, Field.field_size+1):
+                self.canvas.create_rectangle(i*self.square_width, 
+                                        j*self.square_width, 
+                                        i*self.square_width+self.square_width, 
+                                        j*self.square_width+self.square_width, 
                                         fill="white", 
                                         outline="black")
         for snake in self.game.snakes:
             for coord in snake.coordinates:
-                self.canvas.create_rectangle((coord.x+1)*Globals.field_size, 
-                                        (coord.y+1)*Globals.field_size, 
-                                        (coord.x+1)*Globals.field_size+20, 
-                                        (coord.y+1)*Globals.field_size+20, 
+                self.canvas.create_rectangle((coord.x+1)*self.square_width, 
+                                        (coord.y+1)*self.square_width, 
+                                        (coord.x+1)*self.square_width+self.square_width, 
+                                        (coord.y+1)*self.square_width+self.square_width, 
                                         fill="blue", 
                                         outline="black")
             coord = snake.coordinates[0]
-            self.canvas.create_rectangle((coord.x+1)*Globals.field_size, 
-                                    (coord.y+1)*Globals.field_size, 
-                                    (coord.x+1)*Globals.field_size+20, 
-                                    (coord.y+1)*Globals.field_size+20, 
+            self.canvas.create_rectangle((coord.x+1)*self.square_width, 
+                                    (coord.y+1)*self.square_width, 
+                                    (coord.x+1)*self.square_width+self.square_width, 
+                                    (coord.y+1)*self.square_width+self.square_width, 
                                     fill="green", 
                                     outline="black")
         for fruit in self.game.fruits:
             coord = fruit.coordinates
-            self.canvas.create_rectangle((coord.x+1)*Globals.field_size, 
-                                    (coord.y+1)*Globals.field_size, 
-                                    (coord.x+1)*Globals.field_size+20, 
-                                    (coord.y+1)*Globals.field_size+20, 
+            self.canvas.create_rectangle((coord.x+1)*self.square_width, 
+                                    (coord.y+1)*self.square_width, 
+                                    (coord.x+1)*self.square_width+self.square_width, 
+                                    (coord.y+1)*self.square_width+self.square_width, 
                                     fill=fruit.color, 
                                     outline="black")
         self.canvas.pack(fill=tk.BOTH, expand=1)
-        self.root.after(100, self.draw)
+        self.root.after(Globals.display_delay, self.draw)

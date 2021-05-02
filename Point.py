@@ -1,4 +1,4 @@
-
+from Field import Field
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -22,7 +22,7 @@ class Point:
 
     def __bool__(self):
         first =  False if self.x < 0 or self.y < 0 else True
-        second = False if self.x >= 20 or self.y >= 20 else True
+        second = False if self.x >= Field.field_size or self.y >= Field.field_size else True
         return first and second
     
     def __hash__(self):

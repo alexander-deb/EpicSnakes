@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from Point import Point
 from random import randint
 from Globals import Globals
+from Field import Field
 
 
 class FruitCreator(ABC):
@@ -47,7 +48,7 @@ class Pineapple():
         return "Pineapple"
 
 def generate_fruit(fruit):
-    coordinates = Point(randint(0, Globals.field_size-1), randint(0, Globals.field_size-1))
+    coordinates = Point(randint(0, Field.field_size-1), randint(0, Field.field_size-1))
     if fruit == "Apple":
         return AppleCreator().create(coordinates)
     elif fruit == "Pineapple":

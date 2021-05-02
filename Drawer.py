@@ -11,9 +11,7 @@ class Drawer():
         self.game = Game()
         self.canvas = tk.Canvas()
         self.draw()
-        
         self.root.bind('<Button-1>', self.kill_snake)
-        
         self.root.mainloop()
 
 
@@ -33,8 +31,8 @@ class Drawer():
 
 
     def draw(self):
-        self.game.run()
         self.canvas.delete("all")
+        self.game.run()
         for i in range(1, 21):
             for j in range(1, 21):
                 self.canvas.create_rectangle(i*Globals.field_size, 

@@ -1,5 +1,4 @@
-from Game import Game
+from Drawer import Drawer
 
 if __name__ == "__main__":
-    game = Game()
-    game.run()
+    Drawer()

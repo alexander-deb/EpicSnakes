@@ -68,9 +68,3 @@ class Drawer():
                                     outline="black")
         self.canvas.pack(fill=tk.BOTH, expand=1)
         self.root.after(100, self.draw)
-
-    
-
-
-if __name__ == '__main__':
-    Drawer()

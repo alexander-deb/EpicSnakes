@@ -50,8 +50,5 @@ class Game:
 
                 else:
                     i += 1
-
-            sleep(0.1)
-            os.system("clear")
             
 

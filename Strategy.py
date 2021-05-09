@@ -16,12 +16,14 @@ class SnakeStrategy(ABC):
         '''
         pass
 
+
 class RandomStrategy(SnakeStrategy):
     '''
     Strategy class. Chooses random direction for every step of Snake
     '''
+
     def next_position(self, snake):
-        
+
         directions = []
         for direct in Globals.directions:
             if direct + snake.coordinates[0]:
@@ -36,10 +38,12 @@ class RandomStrategy(SnakeStrategy):
         else:
             snake.tail = False
 
+
 class DirectStrategy(SnakeStrategy):
     '''
     Strategy class. Chooses random Point in field and moves snke to it (first on X axis, then on Y)
     '''
+
     def next_position(self, snake):
         if not snake.goal:
             snake.change_goal()

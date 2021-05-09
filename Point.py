@@ -1,8 +1,11 @@
 from Field import Field
+
+
 class Point:
     '''
     My own type of data. Acts like a vector
     '''
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -28,7 +31,7 @@ class Point:
         x = self.x - other.x
         y = self.y - other.y
         return Point(x, y)
-    
+
     def __eq__(self, other):
         '''
         returns bool eq or neq
@@ -39,10 +42,10 @@ class Point:
         '''
         returns bool (is in field or not)
         '''
-        is_in_field_left =  False if self.x < 0 or self.y < 0 else True
+        is_in_field_left = False if self.x < 0 or self.y < 0 else True
         is_in_field_right = False if self.x >= Field.field_size or self.y >= Field.field_size else True
         return is_in_field_left and is_in_field_right
-    
+
     def __hash__(self):
         '''
         returns hash like a tuple

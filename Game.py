@@ -9,17 +9,19 @@ from random import randint, choice
 from SnakePrototype import Snake
 import copy
 
+
 class Game:
     '''
     Main game class
     '''
+
     def __init__(self):
         self.weapon = "finger"
         self.score = 0
         self.name = "Alex"
         self.snakes = []
         self.fruits = []
-        
+
     def display_objects(self):
         '''
         Displays field filled with objects
@@ -57,7 +59,6 @@ class Game:
             Globals.fruits_quantity = 5
         self.create_objects()
 
-
     def create_objects(self):
         '''
         Generates first Fruits and Snakes
@@ -65,10 +66,10 @@ class Game:
         start_point = Field.field_size // 2
         for i in range(Globals.fruits_quantity):
             self.fruits.append(generate_fruit(choice(Globals.fruits)))
-        snake = Snake([Point(start_point, start_point), Point(start_point, start_point+1), Point(start_point+1, start_point+1)], "blue")
+        snake = Snake([Point(start_point, start_point), Point(
+            start_point, start_point+1), Point(start_point+1, start_point+1)], "blue")
         for i in range(Globals.snakes_quantity):
             self.snakes.append(copy.deepcopy(snake))
-
 
     def run(self):
         '''
@@ -88,5 +89,3 @@ class Game:
 
                 else:
                     i += 1
-            
-

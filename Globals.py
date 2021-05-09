@@ -1,5 +1,6 @@
 from Point import Point
 
+
 class Globals:
     '''
     Class for globla variables
@@ -10,4 +11,3 @@ class Globals:
     display_delay = 150
     snakes_quantity = 4
     fruits_quantity = 4
-

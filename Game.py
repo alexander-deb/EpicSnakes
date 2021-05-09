@@ -35,7 +35,7 @@ class Game:
 
     def choose_difficulty(self, difficulty):
         '''
-        Changes the difficulty. 
+        Changes the difficulty.
         P.S. depends on user click in GUI
         '''
         self.difficulty = difficulty

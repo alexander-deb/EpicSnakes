@@ -2,7 +2,6 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from Point import Point
 from random import randint
-from Globals import Globals
 from Field import Field
 
 

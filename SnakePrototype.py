@@ -2,10 +2,9 @@ import copy
 
 from Globals import Globals
 from Point import Point
-from random import randint, choice
+from random import randint
 from collections import deque
-from abc import ABC, abstractmethod
-from Strategy import DirectStrategy, RandomStrategy
+from Strategy import RandomStrategy
 
 
 class Snake:

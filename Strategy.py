@@ -1,7 +1,5 @@
 from Point import Point
 from abc import ABC, abstractmethod
-from Globals import Globals
-from Field import Field
 from random import choice
 
 

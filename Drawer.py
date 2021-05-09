@@ -58,7 +58,7 @@ class Drawer():
 
     def kill_snake(self, event):
         '''
-        Button event handler. 
+        Button event handler.
         If player clicks on Snakes head, it dies.
         '''
         x = event.x // self.square_width - 1

@@ -1,11 +1,8 @@
-import os
-
-from time import sleep
 from FruitFactory import generate_fruit
 from Globals import Globals
 from Field import Field
 from Point import Point
-from random import randint, choice
+from random import choice
 from SnakePrototype import Snake
 import copy
 

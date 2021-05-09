@@ -1,14 +1,27 @@
 from Point import Point
 from abc import ABC, abstractmethod
 from Globals import Globals
+from Field import Field
 from random import choice
+
+
 class SnakeStrategy(ABC):
+    '''
+    Abstract class for Strategy pattern
+    '''
     @abstractmethod
     def next_position(self, snake):
+        '''
+        Calculates next position of the Snake
+        '''
         pass
 
 class RandomStrategy(SnakeStrategy):
+    '''
+    Strategy class. Chooses random direction for every step of Snake
+    '''
     def next_position(self, snake):
+        
         directions = []
         for direct in Globals.directions:
             if direct + snake.coordinates[0]:
@@ -24,6 +37,9 @@ class RandomStrategy(SnakeStrategy):
             snake.tail = False
 
 class DirectStrategy(SnakeStrategy):
+    '''
+    Strategy class. Chooses random Point in field and moves snke to it (first on X axis, then on Y)
+    '''
     def next_position(self, snake):
         if not snake.goal:
             snake.change_goal()

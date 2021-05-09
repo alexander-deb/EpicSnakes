@@ -1,6 +1,7 @@
 from Point import Point
 from abc import ABC, abstractmethod
 from random import choice
+import Globals
 
 
 class SnakeStrategy(ABC):

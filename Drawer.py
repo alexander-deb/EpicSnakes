@@ -6,6 +6,9 @@ from Point import Point
 
 
 class Drawer():
+    '''
+    Facade pattern class for drawind and displaying all objects with Tkinter library
+    '''
     def __init__(self):
         self.root = tk.Tk()
         self.square_width = 1
@@ -18,6 +21,9 @@ class Drawer():
         self.root.mainloop()
 
     def menu(self):
+        '''
+        Displays main menu with buttons for choosing difficulty
+        '''
         self.root.geometry("100x100+500+200")
         def but(x):
             self.game.choose_difficulty(x)
@@ -47,7 +53,10 @@ class Drawer():
         
 
     def kill_snake(self, event):
-        
+        '''
+        Button event handler. 
+        If player clicks on Snakes head, it dies.
+        '''
         x = event.x // self.square_width - 1
         y = event.y // self.square_width - 1
         i = 0
@@ -63,6 +72,9 @@ class Drawer():
 
 
     def draw(self):
+        '''
+        Main function that displays all objects in drawed field.
+        '''
         self.game.run()
         self.canvas.delete("all")
         self.label.config(text=f"Score: {self.game.score}")

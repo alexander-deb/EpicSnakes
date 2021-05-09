@@ -10,6 +10,9 @@ from SnakePrototype import Snake
 import copy
 
 class Game:
+    '''
+    Main game class
+    '''
     def __init__(self):
         self.weapon = "finger"
         self.score = 0
@@ -18,6 +21,9 @@ class Game:
         self.fruits = []
         
     def display_objects(self):
+        '''
+        Displays field filled with objects
+        '''
         field = [["_"]*Field.field_size for i in range(Field.field_size)]
         for fruit in self.fruits:
             field[fruit.coordinates.x][fruit.coordinates.y] = "F"
@@ -29,6 +35,10 @@ class Game:
             print(*field[i])
 
     def choose_difficulty(self, difficulty):
+        '''
+        Changes the difficulty. 
+        P.S. depends on user click in GUI
+        '''
         self.difficulty = difficulty
         if self.difficulty == 1:
             Field.field_size = 10
@@ -49,6 +59,9 @@ class Game:
 
 
     def create_objects(self):
+        '''
+        Generates first Fruits and Snakes
+        '''
         start_point = Field.field_size // 2
         for i in range(Globals.fruits_quantity):
             self.fruits.append(generate_fruit(choice(Globals.fruits)))
@@ -58,6 +71,9 @@ class Game:
 
 
     def run(self):
+        '''
+        Main function. Calculates every frame of the Game.
+        '''
         for snake in self.snakes:
             snake.next_position()
             i = 0

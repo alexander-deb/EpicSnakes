@@ -8,15 +8,10 @@ from abc import ABC, abstractmethod
 from Strategy import DirectStrategy, RandomStrategy
 
 
-class SelfReferencingEntity:
-    def __init__(self):
-        self.parent = None
-
-    def set_parent(self, parent):
-        self.parent = parent
-
-
 class Snake:
+    '''
+    class for Snakes using Prortotype and Strategy patterns
+    '''
     def __init__(self, coordinates, color):
         self.coordinates = deque(coordinates)
         self.direction = None
@@ -26,16 +21,28 @@ class Snake:
         self.goal = None
 
     def next_position(self):
+        '''
+        calculates next position of snake
+        '''
         self.strategy.next_position(self)
     
     def take_bonus(self):
+        '''
+        is necessary to add new element on tail?
+        '''
         self.tail = True
 
     def change_goal(self):
+        '''
+        calculates new goal in field
+        '''
         self.goal = Point(randint(0, Globals.field_size-1), randint(0, Globals.field_size-1))
 
 
     def __copy__(self):
+        '''
+        method for copy.copy()
+        '''
         coordinates = copy.copy(self.coordinates)
         new = self.__class__(
             coordinates, self.color
@@ -44,6 +51,9 @@ class Snake:
         return new
 
     def __deepcopy__(self, memo={}):
+        '''
+        method for copy.deepcopy()
+        '''
         # First, let's create copies of the nested objects.
         coordinates = copy.deepcopy(self.coordinates, memo)
         new = self.__class__(

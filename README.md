@@ -9,3 +9,5 @@ git clone https://github.com/alexander-deb/EpicSnakes.git
 cd EpicSnakes
 python3 main.py
 ```
+
+You shuold kill all snakes to win. Press on their heads to kill snakes.
